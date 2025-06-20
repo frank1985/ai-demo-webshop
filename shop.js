@@ -11,8 +11,15 @@ function getBasket() {
 
 function addToBasket(product) {
   const basket = getBasket();
+  if (basket.length >= 10) {
+    // Show error if possible
+    if (typeof showBasketLimitError === "function") showBasketLimitError();
+    return;
+  }
   basket.push(product);
   localStorage.setItem("basket", JSON.stringify(basket));
+  // Optionally, clear error if present
+  if (typeof clearBasketLimitError === "function") clearBasketLimitError();
 }
 
 function clearBasket() {
@@ -83,3 +90,8 @@ window.clearBasket = function () {
   origClearBasket();
   renderBasketIndicator();
 };
+
+// Utility to check if basket is full
+function isBasketFull() {
+  return getBasket().length >= 10;
+}

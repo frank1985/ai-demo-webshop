@@ -1,0 +1,35 @@
+<!-- Add this inside the .content-box, above the button -->
+<div id="basketLimitError" class="basket-limit-error" style="display:none;"></div>
+
+<!-- Update the script -->
+<script src="shop.js"></script>
+<script>
+  function showBasketLimitError() {
+    const el = document.getElementById("basketLimitError");
+    if (el) {
+      el.textContent = "Your basket is full. You cannot add more than 10 items.";
+      el.style.display = "block";
+    }
+    document.getElementById("addToBasket").disabled = true;
+    document.getElementById("addToBasket").classList.add("disabled-btn");
+  }
+  function clearBasketLimitError() {
+    const el = document.getElementById("basketLimitError");
+    if (el) el.style.display = "none";
+    document.getElementById("addToBasket").disabled = false;
+    document.getElementById("addToBasket").classList.remove("disabled-btn");
+  }
+  function updateAddToBasketState() {
+    if (isBasketFull()) {
+      showBasketLimitError();
+    } else {
+      clearBasketLimitError();
+    }
+  }
+  document.getElementById("addToBasket").onclick = function () {
+    addToBasket("apple");
+    updateAddToBasketState();
+  };
+  // On page load, check if basket is already full
+  updateAddToBasketState();
+</script> 

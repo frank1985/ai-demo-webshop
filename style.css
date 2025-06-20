@@ -309,3 +309,15 @@ input[type="text"]:focus {
 .basket-title-red {
   color: #e53935;
 }
+.basket-limit-error {
+  color: #e53935;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.disabled-btn,
+button:disabled {
+  background: #ccc !important;
+  color: #888 !important;
+  cursor: not-allowed !important;
+  border: 2px solid #aaa !important;
+}
